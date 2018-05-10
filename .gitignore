@@ -1,0 +1,3 @@
+# Airflo
+logs/*
+airflow-webserver.pid
