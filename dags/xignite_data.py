@@ -4,8 +4,10 @@ https://github.com/airbnb/airflow/blob/master/airflow/example_dags/tutorial.py
 """
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-from airflow.operators.docker_operator import DockerOperator
 from datetime import datetime, timedelta
+
+# Will show up under airflow.operators.test_plugin.PluginOperator
+from airflow.operators.aws_glue_plugin import AWSGlueJobOperator
 
 
 default_args = {
@@ -63,6 +65,18 @@ t3 = BashOperator(
 #     retries=1,
 #     dag=dag)
 
+# t5 = AWSGlueJobOperator(job_name='mysql_to_s3_xignite2',
+#                         concurrent_run_limit=1,
+#                         script_location='s3://com.cbinsights.raw-datastore-us-east-1/glue-scripts/xignite_mysql_to_s3',
+#                         retry_limit=1,
+#                         num_of_dpus=10,
+#                         region_name='us-east-1',
+#                         s3_bucket='glue-scripts',
+#                         iam_role_name='aws-glue-role',
+#                         task_id='xignite_mysql_to_s3',
+#                         start_date=datetime(2018, 5, 10))
 
 t2 << t1
 t3 << t1
+# t5 << t2
+# t5 << t3

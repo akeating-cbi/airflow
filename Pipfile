@@ -9,6 +9,11 @@ name = "pypi"
 
 apache-airflow = "*"
 cryptography = "*"
+"boto3" = "*"
+moto = "*"
+ipython = "*"
+pyarrow = "*"
+jupyter = "*"
 
 
 [dev-packages]
